@@ -3,7 +3,7 @@ import time
 import random
 
 # Подключение к провайдеру (замените на ваш URL провайдера)
-provider_url = "https://endpoints.omniatech.io/v1/op/sepolia/public"  # op
+provider_url = "https://opt-sepolia.g.alchemy.com/v2/5ldNCcjz_ocN-wBjQSyZlUYxzl5H7mkI"  # op -> arb
 web3 = Web3(Web3.HTTPProvider(provider_url))
 
 # Проверяем подключение к провайдеру
@@ -11,8 +11,8 @@ if not web3.is_connected():
     raise ConnectionError("Failed to connect to the Ethereum network.")
 
 # Адрес отправителя и его приватный ключ
-sender_address = "0x92eb2fc672c74df59f110004818ac907f0208594"
-private_key = "0xYourPrivateKeyHere"  # Добавьте ваш приватный ключ, начинающийся с "0x"
+sender_address = "******" #высокий регистр
+private_key = "******"  # Добавьте ваш приватный ключ, начинающийся с "0x"
 
 # Функция для отправки транзакции
 def send_transaction(private_key):
@@ -35,7 +35,7 @@ def send_transaction(private_key):
             "maxFeePerGas": max_fee,
             "maxPriorityFeePerGas": max_priority_fee,
             "nonce": nonce,
-            "data": "0x56591d596172627400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000092Eb2fc672C74df59F110004818Ac907f020859400000000000000000000000000000000000000000000000015eef6f64cc9e0a30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000016345785d8a00000",
+            "data": "******",
         }
 
         # Автоматический расчет лимита газа
@@ -55,8 +55,8 @@ def send_transaction(private_key):
         print(f"Error sending transaction: {str(e)}")
 
 # Основной цикл отправки транзакций
-for i in range(100):
-    send_transaction()
-    wait_time = random.randint(1, 2)  # Случайная задержка
+for i in range(50):
+    send_transaction(private_key)
+    wait_time = random.randint(2, 5)  # Случайная задержка
     print(f"Waiting for {wait_time} seconds...")
     time.sleep(wait_time)
