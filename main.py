@@ -15,7 +15,7 @@ sender_address = "0x92eb2fc672c74df59f110004818ac907f0208594"
 private_key = "0xYourPrivateKeyHere"  # Добавьте ваш приватный ключ, начинающийся с "0x"
 
 # Функция для отправки транзакции
-def send_transaction():
+def send_transaction(private_key):
     try:
         # Получение актуального nonce
         nonce = web3.eth.get_transaction_count(sender_address)
@@ -31,11 +31,11 @@ def send_transaction():
             "chainId": 11155420,  # op
             "from": sender_address,
             "to": "0xF221750e52aA080835d2957F2Eed0d5d7dDD8C38",
-            "value": web3.to_wei(0.1, "ether"),  # Преобразование значения в wei
+            "value": web3.to_wei(1.6, "ether"),
             "maxFeePerGas": max_fee,
             "maxPriorityFeePerGas": max_priority_fee,
             "nonce": nonce,
-            "data": "0x56591d596172627400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000092E>",
+            "data": "0x56591d596172627400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000092Eb2fc672C74df59F110004818Ac907f020859400000000000000000000000000000000000000000000000015eef6f64cc9e0a30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000016345785d8a00000",
         }
 
         # Автоматический расчет лимита газа
@@ -48,7 +48,7 @@ def send_transaction():
         tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
         print(f"Transaction sent! Hash: {tx_hash.hex()}")
 
-        # Подтверждение транзакции (необязательно)
+        # Подтверждение транзакции
         receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
         print(f"Transaction {tx_hash.hex()} confirmed in block {receipt['blockNumber']}")
     except Exception as e:
